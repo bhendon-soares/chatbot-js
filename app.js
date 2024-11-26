@@ -10,6 +10,8 @@ const PORT = 3000;
 
 app.use(express.json());
 
+app.use(express.static(path.join(__dirname, 'public')));
+
 app.post('/chat', async (req, res) => {
     const { message } = req.body;
 
@@ -35,8 +37,6 @@ app.post('/chat', async (req, res) => {
         res.status(500).send("Erro ao conectar com a API do HuggingFace");
     }
 });
-
-app.use(express.static(path.join(__dirname, 'public')));
 
 app.listen(PORT, () => {
     console.log("Servidor rodando em http://localhost:3000");
